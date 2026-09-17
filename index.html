@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLACK GYM - Tu Gimnasio</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* === ESTILOS VISUALES === */
+
+        /* Estilos generales para todo el cuerpo de la página (Tema Oscuro) */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212; /* Fondo oscuro */
+            color: #ffffff;            /* Texto en color blanco */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Diseño de la franja superior (Header) */
+        header {
+            text-align: center;
+            padding: 30px 20px 10px 20px;
+            background-color: #000000;
+            border-bottom: 3px solid #ff3b30; /* Línea de acento color rojo */
+        }
+
+        /* Contenedor flexible para alinear el logo y el título juntos */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px; /* Separación entre logo y texto */
+            flex-wrap: wrap;
+        }
+
+        /* Control de tamaño para la imagen de tu logo */
+        .gym-logo {
+            max-height: 80px; /* Altura máxima para no desproporcionar el encabezado */
+            width: auto;      /* Mantiene la proporción original de la imagen */
+            object-fit: contain;
+        }
+
+        /* Estilo del título principal (BLACK GYM) */
+        header h1 {
+            font-size: 3rem;
+            margin: 0;
+            letter-spacing: 4px;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        /* Resalta la palabra "GYM" en color rojo */
+        header h1 span {
+            color: #ff3b30;
+        }
+
+        /* Estilo del eslogan debajo del título */
+        header p {
+            color: #aaa;
+            font-size: 1.1rem;
+            margin-top: 5px;
+        }
+
+        /* Menú de navegación */
+        nav {
+            margin-top: 25px;
+        }
+
+        /* Convierte la lista en una barra horizontal centrada */
+        nav ul {
+            list-style: none; /* Quita los puntos/viñetas de la lista */
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px; /* Espacio entre recuadros */
+        }
+
+        /* Transforma los enlaces en recuadros interactivos tipo tarjetas */
+        nav ul li a {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            text-decoration: none; /* Elimina el subrayado de enlace */
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            border: 2px solid #333333;
+            border-radius: 8px; /* Bordes redondeados */
+            transition: all 0.3s ease; /* Transición suave para la animación */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        /* Efecto al pasar el cursor (Hover) sobre los recuadros del menú */
+        nav ul li a:hover {
+            background-color: #ff3b30;
+            border-color: #ff3b30;
+            color: #ffffff;
+            transform: translateY(-3px); /* Eleva ligeramente el recuadro */
+            box-shadow: 0 6px 12px rgba(255, 59, 48, 0.4); /* Resplandor rojo */
+        }
+
+        /* Estructura del contenido central */
+        main {
+            max-width: 1000px; /* Ancho máximo para mantener el contenido centrado */
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Diseño para cada recuadro/sección del sitio */
+        section {
+            background-color: #1e1e1e;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            border: 1px solid #333;
+        }
+
+        /* Estilo de los títulos de cada sección */
+        h2 {
+            color: #ff3b30;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            margin-top: 0;
+            text-transform: uppercase;
+        }
+
+        /* Estilo de la imagen principal en la bienvenida */
+        .hero-img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover; /* Recorta la imagen limpiamente sin deformarla */
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        /* Cuadro destacado para la dirección de la ubicación */
+        .address-box {
+            background-color: #2a2a2a;
+            padding: 15px;
+            border-left: 4px solid #ff3b30;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        /* Botón estilo Google Maps */
+        .map-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 15px;
+            padding: 12px 20px;
+            background-color: #ea4335;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        .map-btn:hover {
+            background-color: #c5221f;
+        }
+
+        /* Contenedor flexible para alinear las tarjetas de redes sociales */
+        .social-container {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        /* Tarjetas de acceso a redes sociales */
+        .social-card {
+            flex: 1;
+            min-width: 150px;
+            padding: 15px;
+            text-align: center;
+            background: #2a2a2a;
+            border-radius: 8px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: 0.3s;
+            border: 1px solid #444;
+        }
+
+        .social-card:hover {
+            background: #ff3b30;
+            border-color: #ff3b30;
+        }
+
+        /* Botón verde para compartir vía WhatsApp */
+        .share-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 20px;
+            background-color: #ff3b30;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        .share-btn:hover {
+            background-color: #e02d22;
+        }
+
+        /* Estilos generales para las entradas del formulario (Campos de texto y botón) */
+        form input, form select, form button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: 1px solid #444;
+            background-color: #2a2a2a;
+            color: white;
+            box-sizing: border-box; /* Evita que los campos se salgan del recuadro */
+        }
+
+        /* Botón para enviar datos del formulario */
+        form button {
+            background-color: #ff3b30;
+            border: none;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        form button:hover {
+            background-color: #e02d22;
+        }
+
+        /* Estilos del pie de página */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #000;
+            color: #777;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="logo.png" alt="Logo BLACK GYM" class="gym-logo">
+            <h1>BLACK <span>GYM</span></h1>
+        </div>
+
+        <p>NO EXCUSSES. JUST RESULTS.</p>
+
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#ubicacion">Ubicación</a></li>
+                <li><a href="#redes">Redes Sociales</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio">
+            <h2>Bienvenido a Black Gym</h2>
+            <p>Diseñado para personas enfocadas en romper sus límites. Contamos con áreas dedicadas a fisicoculturismo, Powerlifting, zona cardio y asesoría personalizada.</p>
+
+            <img class="hero-img" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800" alt="Instalaciones de Black Gym">
+        </section>
+
+        <section id="servicios">
+            <h2>Nuestros Servicios</h2>
+            <ul>
+                <li><strong>Área Heavy Metal:</strong> Mancuernas hasta 60kg y discos olímpicos.</li>
+                <li><strong>Cardio Zone:</strong> Caminadoras, elípticas y escaladoras de última generación.</li>
+                <li><strong>Cross Training:</strong> Jaula funcional y zona de agarre libre.</li>
+                <li><strong>Nutrición y Suplementación:</strong> Venta de suplementos y planes nutricionales.</li>
+            </ul>
+        </section>
+
+        <section id="ubicacion">
+            <h2>¿Dónde nos ubicamos?</h2>
+            
+            <div class="address-box">
+                <p style="margin:0; font-size: 1.1rem;"><strong>📍 Dirección:</strong></p>
+                <p style="margin:5px 0 0 0; color:#ddd;">Av. Manuel Maples Arce #202, Col. Enrique Rodríguez Cano, C.P. 92880, Túxpam de Rodríguez Cano, Ver. (Zona Boulevard)</p>
+            </div>
+
+            <p><strong>Horarios:</strong> Lunes a Viernes (5:00 AM - 11:00 PM) | Sábados (6:00 AM - 6:00 PM)</p>
+            
+            <div style="border-radius: 8px; overflow: hidden; margin-top: 15px;">
+                <iframe 
+                    src="https://maps.google.com/maps?q=20.9418320,-97.3780410&hl=es&z=17&output=embed" 
+                    width="100%" 
+                    height="350" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+
+            <div style="margin-top: 15px;">
+                <a href="https://www.google.com/maps?q=20.9418320,-97.3780410" target="_blank" class="map-btn">
+                    <i class="fa-solid fa-location-dot"></i> Abrir en Google Maps GPS
+                </a>
+            </div>
+        </section>
+
+        <section id="redes">
+            <h2>Comunidad & Redes Sociales</h2>
+            <p>Sigue nuestras cuentas oficiales para conocer los retos de la semana y rutinas diarias:</p>
+
+            <div class="social-container">
+                <a href="https://www.instagram.com/blackgym544?stkn=MWdtNTJtaThpcWppag==" target="_blank" class="social-card">
+                    <i class="fa-brands fa-instagram fa-lg"></i> Instagram
+                </a>
+                <a href="https://www.facebook.com/share/19e7so1coJ/" target="_blank" class="social-card">
+                    <i class="fa-brands fa-facebook fa-lg"></i> Facebook
+                </a>
+                <a href="https://www.tiktok.com/@black.gym98?_r=1&_t=ZS-99eXTjdkThA" target="_blank" class="social-card">
+                    <i class="fa-brands fa-tiktok fa-lg"></i> TikTok
+                </a>
+            </div>
+
+            <div style="margin-top: 25px;">
+                <p>¿Quieres ver nuestras rutinas y videos motivacionales?</p>
+                <a href="https://www.tiktok.com/@black.gym98?_r=1&_t=ZS-99eXTjdkThA" target="_blank" class="share-btn">
+                    <i class="fa-brands fa-tiktok"></i> Ver contenido en TikTok
+                </a>
+            </div>
+        </section>
+
+        <section id="contacto">
+            <h2>Pase Gratis por 1 Día</h2>
+            <p>Llena tus datos para obtener tu pase de prueba en Black Gym:</p>
+            
+            <form action="#" method="post">
+                <label for="nombre">Nombre Completo:</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ej. Carlos Pérez" required>
+
+                <label for="telefono">Teléfono de Contacto:</label>
+                <input type="tel" id="telefono" name="telefono" placeholder="Ej. 7831234567" required>
+
+                <label for="horario">Horario habitual de entrenamiento:</label>
+                <select id="horario" name="horario">
+                    <option value="manana">Mañana (5:00 AM - 12:00 PM)</option>
+                    <option value="tarde">Tarde (12:00 PM - 6:00 PM)</option>
+                    <option value="noche">Noche (6:00 PM - 11:00 PM)</option>
+                </select>
+
+                <button type="submit">Obtener mi Pase Gratis</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 BLACK GYM Tuxpan. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
