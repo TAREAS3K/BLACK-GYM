@@ -199,7 +199,7 @@
             border-color: #ff3b30;
         }
 
-        /* Botón verde para compartir vía WhatsApp */
+        /* Botón destacado TikTok */
         .share-btn {
             display: inline-block;
             margin-top: 15px;
@@ -216,7 +216,37 @@
             background-color: #e02d22;
         }
 
-        /* Estilos generales para las entradas del formulario (Campos de texto y botón) */
+        /* Tarjetas para la sección de Paquetes */
+        .planes-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .plan-card {
+            flex: 1;
+            min-width: 200px;
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #444;
+            text-align: center;
+        }
+
+        .plan-card h3 {
+            margin-top: 0;
+            color: #ffffff;
+        }
+
+        .precio {
+            font-size: 1.8rem;
+            color: #ff3b30;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Estilos generales para las entradas del formulario */
         form input, form select, form button {
             width: 100%;
             padding: 12px;
@@ -226,7 +256,7 @@
             border: 1px solid #444;
             background-color: #2a2a2a;
             color: white;
-            box-sizing: border-box; /* Evita que los campos se salgan del recuadro */
+            box-sizing: border-box;
         }
 
         /* Botón para enviar datos del formulario */
@@ -268,6 +298,7 @@
             <ul>
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#paquetes">Paquetes</a></li>
                 <li><a href="#ubicacion">Ubicación</a></li>
                 <li><a href="#redes">Redes Sociales</a></li>
                 <li><a href="#contacto">Contacto</a></li>
@@ -276,6 +307,7 @@
     </header>
 
     <main>
+        <!-- Inicio -->
         <section id="inicio">
             <h2>Bienvenido a Black Gym</h2>
             <p>Diseñado para personas enfocadas en romper sus límites. Contamos con áreas dedicadas a fisicoculturismo, Powerlifting, zona cardio y asesoría personalizada.</p>
@@ -283,6 +315,7 @@
             <img class="hero-img" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800" alt="Instalaciones de Black Gym">
         </section>
 
+        <!-- Servicios -->
         <section id="servicios">
             <h2>Nuestros Servicios</h2>
             <ul>
@@ -293,6 +326,46 @@
             </ul>
         </section>
 
+        <!-- Paquetes -->
+        <section id="paquetes">
+            <h2>Paquetes y Precios</h2>
+            <div class="planes-container">
+                <div class="plan-card">
+                    <h3>Visita</h3>
+                    <div class="precio">$160</div>
+                </div>
+                <div class="plan-card">
+                    <h3>Semanal</h3>
+                    <div class="precio">$250</div>
+                </div>
+                <div class="plan-card">
+                    <h3>Quincenal</h3>
+                    <div class="precio">$550</div>
+                </div>
+                <div class="plan-card">
+                    <h3>Mes Individual</h3>
+                    <div class="precio">$900</div>
+                </div>
+                <div class="plan-card">
+                    <h3>Mes Pareja</h3>
+                    <div class="precio">$1,700</div>
+                </div>
+                <div class="plan-card">
+                    <h3>Bimestral</h3>
+                    <div class="precio">$1,700</div>
+                </div>
+                <div class="plan-card">
+                    <h3>Trimestral</h3>
+                    <div class="precio">$2,660</div>
+                </div>
+                <div class="plan-card">
+                    <h3>Anual</h3>
+                    <div class="precio">$9,999</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ubicación -->
         <section id="ubicacion">
             <h2>¿Dónde nos ubicamos?</h2>
             
@@ -321,6 +394,7 @@
             </div>
         </section>
 
+        <!-- Redes Sociales -->
         <section id="redes">
             <h2>Comunidad & Redes Sociales</h2>
             <p>Sigue nuestras cuentas oficiales para conocer los retos de la semana y rutinas diarias:</p>
@@ -345,11 +419,12 @@
             </div>
         </section>
 
+        <!-- Formulario -->
         <section id="contacto">
             <h2>Pase Gratis por 1 Día</h2>
             <p>Llena tus datos para obtener tu pase de prueba en Black Gym:</p>
             
-            <form action="#" method="post">
+            <form id="paseForm">
                 <label for="nombre">Nombre Completo:</label>
                 <input type="text" id="nombre" name="nombre" placeholder="Ej. Carlos Pérez" required>
 
@@ -371,6 +446,32 @@
     <footer>
         <p>© 2026 BLACK GYM Tuxpan. Todos los derechos reservados.</p>
     </footer>
+
+    <!-- Script JavaScript para controlar el registro del formulario -->
+    <script>
+        document.getElementById('paseForm').addEventListener('submit', function(event) {
+            // Evita que la página se recargue inmediatamente al enviar
+            event.preventDefault();
+
+            // Obtiene el nombre ingresado
+            const nombre = document.getElementById('nombre').value;
+
+            // Obtiene el número actual de registrados desde el navegador (si no hay ninguno, inicia en 0)
+            let contador = localStorage.getItem('contadorPases') || 0;
+            
+            // Incrementa el contador en 1
+            contador++;
+
+            // Guarda el nuevo valor en la memoria del navegador
+            localStorage.setItem('contadorPases', contador);
+
+            // Muestra la ventana flotante con la información requerida
+            alert('¡Felicidades, ' + nombre + '! Tu pase ha sido registrado con éxito.\nEres la persona registrada #' + contador);
+
+            // Limpia los campos del formulario
+            this.reset();
+        });
+    </script>
 
 </body>
 </html>
