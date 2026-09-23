@@ -239,14 +239,173 @@
             color: #ffffff;
         }
 
-        .precio {
-            font-size: 1.8rem;
+        /* Estilo para las aclaraciones entre paréntesis */
+        .nota-subtitulo {
+            display: block;
+            font-size: 0.85rem;
             color: #ff3b30;
             font-weight: bold;
-            margin-top: 10px;
+            margin-top: 4px;
+            text-transform: uppercase;
         }
 
-        /* Estilos generales para las entradas del formulario */
+        /* Botón interactivo para los precios */
+        .btn-precio {
+            width: 100%;
+            background-color: #ff3b30;
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .btn-precio:hover {
+            background-color: #e02d22;
+            transform: scale(1.05);
+        }
+
+        /* TABLA Y ESTILOS DEL CARRITO */
+        .cart-table-container {
+            overflow-x: auto;
+            margin-top: 15px;
+        }
+
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            background-color: #2a2a2a;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .cart-table th, .cart-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #444;
+        }
+
+        .cart-table th {
+            background-color: #000;
+            color: #ff3b30;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .btn-eliminar {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: 0.2s;
+        }
+
+        .btn-eliminar:hover {
+            background-color: #bd2130;
+        }
+
+        .cart-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 2px solid #333;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .cart-total-text {
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        .cart-total-amount {
+            color: #ff3b30;
+            font-size: 1.6rem;
+        }
+
+        /* Contenedor del área de checkout (Nombre del comprador + Botones) */
+        .cart-checkout-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .buyer-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .buyer-input-group label {
+            font-size: 0.8rem;
+            color: #aaa;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .buyer-input {
+            padding: 10px 14px;
+            border-radius: 6px;
+            border: 1px solid #ff3b30;
+            background-color: #121212;
+            color: white;
+            font-size: 0.95rem;
+            outline: none;
+            min-width: 220px;
+            box-sizing: border-box;
+        }
+
+        .buyer-input:focus {
+            box-shadow: 0 0 8px rgba(255, 59, 48, 0.5);
+        }
+
+        .cart-actions {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+
+        .btn-cart-action {
+            padding: 12px 20px;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.3s;
+            height: 42px;
+        }
+
+        .btn-vaciar {
+            background-color: #333;
+            color: #ccc;
+        }
+
+        .btn-vaciar:hover {
+            background-color: #444;
+            color: #fff;
+        }
+
+        .btn-comprar {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-comprar:hover {
+            background-color: #218838;
+        }
+
+        /* Estilos generales para las entradas del formulario estándar */
         form input, form select, form button {
             width: 100%;
             padding: 12px;
@@ -274,6 +433,146 @@
             background-color: #e02d22;
         }
 
+        /* === VENTANA EMERGENTE (MODAL) ESTILIZADA === */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-box {
+            background-color: #1e1e1e;
+            border: 2px solid #ff3b30;
+            border-radius: 12px;
+            padding: 25px;
+            width: 90%;
+            max-width: 420px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(255, 59, 48, 0.4);
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-box {
+            transform: translateY(0);
+        }
+
+        .modal-box h3 {
+            color: #ff3b30;
+            margin-top: 0;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .modal-box p {
+            font-size: 1.1rem;
+            color: #ddd;
+            margin: 15px 0 15px 0;
+            line-height: 1.5;
+        }
+
+        /* Recuadro de número de pedido dentro del modal */
+        .order-badge {
+            background-color: #2a2a2a;
+            border: 1px dashed #ff3b30;
+            padding: 10px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 1.2rem;
+            color: #ff3b30;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        /* CONTROLES DE CANTIDAD (+ y -) */
+        .qty-control {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .btn-qty {
+            background-color: #2a2a2a;
+            color: #ff3b30;
+            border: 2px solid #ff3b30;
+            font-size: 1.5rem;
+            font-weight: bold;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+
+        .btn-qty:hover {
+            background-color: #ff3b30;
+            color: #ffffff;
+        }
+
+        .qty-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffffff;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        /* ACCIONES DEL MODAL */
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            background-color: #ff3b30;
+            color: white;
+            border: none;
+            padding: 12px 15px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .modal-btn:hover {
+            background-color: #e02d22;
+        }
+
+        .modal-btn-secondary {
+            background-color: #333;
+            color: #aaa;
+        }
+
+        .modal-btn-secondary:hover {
+            background-color: #444;
+            color: #fff;
+        }
+
         /* Estilos del pie de página */
         footer {
             text-align: center;
@@ -299,6 +598,7 @@
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#servicios">Servicios</a></li>
                 <li><a href="#paquetes">Paquetes</a></li>
+                <li><a href="#carrito"><i class="fa-solid fa-cart-shopping"></i> Carrito (<span id="cartCount">0</span>)</a></li>
                 <li><a href="#ubicacion">Ubicación</a></li>
                 <li><a href="#redes">Redes Sociales</a></li>
                 <li><a href="#contacto">Contacto</a></li>
@@ -331,37 +631,54 @@
             <h2>Paquetes y Precios</h2>
             <div class="planes-container">
                 <div class="plan-card">
-                    <h3>Visita</h3>
-                    <div class="precio">$160</div>
+                    <h3>Visita <span class="nota-subtitulo">(SIN ÁREA DE POWER)</span></h3>
+                    <button class="btn-precio" onclick="abrirModalPaquete('Visita (SIN ÁREA DE POWER)', 120, 15)">$120</button>
+                </div>
+                <div class="plan-card">
+                    <h3>Visita Plus <span class="nota-subtitulo">(TODO EL ACCESO AL GYM)</span></h3>
+                    <button class="btn-precio" onclick="abrirModalPaquete('Visita Plus (TODO EL ACCESO AL GYM)', 150, 15)">$150</button>
                 </div>
                 <div class="plan-card">
                     <h3>Semanal</h3>
-                    <div class="precio">$250</div>
+                    <button class="btn-precio" onclick="abrirModalPaquete('Semanal', 300, 25)">$300</button>
                 </div>
                 <div class="plan-card">
                     <h3>Quincenal</h3>
-                    <div class="precio">$550</div>
+                    <button class="btn-precio" onclick="abrirModalPaquete('Quincenal', 550, 15)">$550</button>
                 </div>
                 <div class="plan-card">
                     <h3>Mes Individual</h3>
-                    <div class="precio">$900</div>
+                    <button class="btn-precio" onclick="abrirModalPaquete('Mes Individual', 900, 120)">$900</button>
                 </div>
                 <div class="plan-card">
-                    <h3>Mes Pareja</h3>
-                    <div class="precio">$1,700</div>
+                    <h3>Mes en Pareja</h3>
+                    <button class="btn-precio" onclick="abrirModalPaquete('Mes en Pareja', 1699, 35)">$1,699</button>
+                </div>
+                <div class="plan-card">
+                    <h3>Mes Familiar <span class="nota-subtitulo">(5 PERSONAS)</span></h3>
+                    <button class="btn-precio" onclick="abrirModalPaquete('Mes Familiar (5 PERSONAS)', 4099, 8)">$4,099</button>
                 </div>
                 <div class="plan-card">
                     <h3>Bimestral</h3>
-                    <div class="precio">$1,700</div>
+                    <button class="btn-precio" onclick="abrirModalPaquete('Bimestral', 1700, 10)">$1,700</button>
                 </div>
                 <div class="plan-card">
-                    <h3>Trimestral</h3>
-                    <div class="precio">$2,660</div>
+                    <h3>Semestral</h3>
+                    <button class="btn-precio" onclick="abrirModalPaquete('Semestral', 4900, 5)">$4,900</button>
                 </div>
                 <div class="plan-card">
                     <h3>Anual</h3>
-                    <div class="precio">$9,999</div>
+                    <button class="btn-precio" onclick="abrirModalPaquete('Anual', 9500, 12)">$9,500</button>
                 </div>
+            </div>
+        </section>
+
+        <!-- Carrito de Compras -->
+        <section id="carrito">
+            <h2><i class="fa-solid fa-cart-shopping"></i> Carrito de Compras</h2>
+            
+            <div id="cartContent">
+                <!-- Se genera dinámicamente desde JavaScript -->
             </div>
         </section>
 
@@ -443,32 +760,296 @@
         </section>
     </main>
 
+    <!-- VENTANA EMERGENTE INTEGRADA EN LA PÁGINA -->
+    <div id="customModal" class="modal-overlay">
+        <div class="modal-box">
+            <h3 id="modalTitle">Paquete</h3>
+            <div id="modalBody">
+                <!-- Se llena dinámicamente con JS -->
+            </div>
+        </div>
+    </div>
+
     <footer>
         <p>© 2026 BLACK GYM Tuxpan. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- Script JavaScript para controlar el registro del formulario -->
+    <!-- Script JavaScript -->
     <script>
+        // Variables globales para el paquete activo y el carrito
+        let paqueteActual = '';
+        let precioActual = 0;
+        let stockDisponible = 0;
+        let cantidadSeleccionada = 1;
+        
+        // Obtener el carrito guardado o iniciar uno vacío
+        let carrito = JSON.parse(localStorage.getItem('blackgym_carrito')) || [];
+
+        // Inicializar el carrito al cargar la página
+        renderizarCarrito();
+
+        // Abrir la ventana modal al presionar un precio
+        function abrirModalPaquete(nombrePaquete, precio, cantidadInicial) {
+            paqueteActual = nombrePaquete;
+            precioActual = precio;
+            let llaveStorage = 'stock_' + nombrePaquete;
+            let disponibles = localStorage.getItem(llaveStorage);
+
+            if (disponibles === null) {
+                disponibles = cantidadInicial;
+                localStorage.setItem(llaveStorage, disponibles);
+            }
+
+            stockDisponible = parseInt(disponibles);
+            cantidadSeleccionada = stockDisponible > 0 ? 1 : 0;
+
+            document.getElementById('modalTitle').innerText = 'Paquete ' + nombrePaquete;
+            
+            actualizarContenidoModal();
+            document.getElementById('customModal').classList.add('active');
+        }
+
+        // Renderizar el contenido dinámico del modal
+        function actualizarContenidoModal() {
+            const body = document.getElementById('modalBody');
+
+            if (stockDisponible <= 0) {
+                body.innerHTML = `
+                    <p style="color: #ff3b30; font-weight: bold;">⚠️ Lo sentimos, este paquete está agotado por el momento.</p>
+                    <div class="modal-actions">
+                        <button class="modal-btn modal-btn-secondary" onclick="cerrarModal()">Cerrar</button>
+                    </div>
+                `;
+                return;
+            }
+
+            body.innerHTML = `
+                <p>Precio Unitario: <strong>$${precioActual.toLocaleString()}</strong></p>
+                <p style="font-size: 0.95rem; color: #aaa;">Quedan <strong>${stockDisponible}</strong> paquete(s) disponible(s).</p>
+                
+                <div class="qty-control">
+                    <button class="btn-qty" onclick="cambiarCantidad(-1)">-</button>
+                    <span class="qty-number" id="qtyText">${cantidadSeleccionada}</span>
+                    <button class="btn-qty" onclick="cambiarCantidad(1)">+</button>
+                </div>
+
+                <div class="modal-actions">
+                    <button class="modal-btn modal-btn-secondary" onclick="cerrarModal()">Cancelar</button>
+                    <button class="modal-btn" onclick="agregarAlCarrito()"><i class="fa-solid fa-cart-shopping"></i> Agregar al Carrito</button>
+                </div>
+            `;
+        }
+
+        // Modificar la cantidad elegida con los botones + y -
+        function cambiarCantidad(cambio) {
+            let nuevaCantidad = cantidadSeleccionada + cambio;
+
+            if (nuevaCantidad >= 1 && nuevaCantidad <= stockDisponible) {
+                cantidadSeleccionada = nuevaCantidad;
+                document.getElementById('qtyText').innerText = cantidadSeleccionada;
+            }
+        }
+
+        // Agregar producto seleccionado al carrito
+        function agregarAlCarrito() {
+            // Descontar del stock disponible local
+            stockDisponible -= cantidadSeleccionada;
+            localStorage.setItem('stock_' + paqueteActual, stockDisponible);
+
+            // Verificar si el producto ya existía en el carrito
+            let itemExistente = carrito.find(item => item.nombre === paqueteActual);
+
+            if (itemExistente) {
+                itemExistente.cantidad += cantidadSeleccionada;
+                itemExistente.subtotal = itemExistente.cantidad * itemExistente.precio;
+            } else {
+                carrito.push({
+                    nombre: paqueteActual,
+                    precio: precioActual,
+                    cantidad: cantidadSeleccionada,
+                    subtotal: cantidadSeleccionada * precioActual
+                });
+            }
+
+            guardarYActualizarCarrito();
+
+            const body = document.getElementById('modalBody');
+            body.innerHTML = `
+                <p style="color: #28a745; font-size: 1.2rem; font-weight: bold;">¡Agregado con éxito!</p>
+                <p>Se han añadido <strong>${cantidadSeleccionada}</strong> paquete(s) de <strong>${paqueteActual}</strong> al carrito.</p>
+                <div class="modal-actions">
+                    <button class="modal-btn" onclick="cerrarModal()">Aceptar</button>
+                </div>
+            `;
+        }
+
+        // Renderizar tabla del carrito de compras
+        function renderizarCarrito() {
+            const container = document.getElementById('cartContent');
+            const cartCountElement = document.getElementById('cartCount');
+
+            let totalItems = 0;
+            let totalPagar = 0;
+
+            carrito.forEach(item => {
+                totalItems += item.cantidad;
+                totalPagar += item.subtotal;
+            });
+
+            cartCountElement.innerText = totalItems;
+
+            if (carrito.length === 0) {
+                container.innerHTML = `<p style="color: #aaa; text-align: center; padding: 20px;">Tu carrito está vacío actualmente. Elige un paquete arriba para comenzar.</p>`;
+                return;
+            }
+
+            let html = `
+                <div class="cart-table-container">
+                    <table class="cart-table">
+                        <thead>
+                            <tr>
+                                <th>Paquete</th>
+                                <th>Precio U.</th>
+                                <th>Cant.</th>
+                                <th>Subtotal</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+            `;
+
+            carrito.forEach((item, index) => {
+                html += `
+                    <tr>
+                        <td><strong>${item.nombre}</strong></td>
+                        <td>$${item.precio.toLocaleString()}</td>
+                        <td>${item.cantidad}</td>
+                        <td>$${item.subtotal.toLocaleString()}</td>
+                        <td><button class="btn-eliminar" onclick="eliminarDelCarrito(${index})"><i class="fa-solid fa-trash"></i></button></td>
+                    </tr>
+                `;
+            });
+
+            html += `
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="cart-summary">
+                    <div class="cart-total-text">
+                        Total a pagar: <span class="cart-total-amount">$${totalPagar.toLocaleString()}</span>
+                    </div>
+                    
+                    <div class="cart-checkout-area">
+                        <div class="buyer-input-group">
+                            <label for="nombreComprador">Nombre del Comprador:</label>
+                            <input type="text" id="nombreComprador" class="buyer-input" placeholder="Ingresa tu nombre completo">
+                        </div>
+                        <div class="cart-actions">
+                            <button class="btn-cart-action btn-vaciar" onclick="vaciarCarrito()">Vaciar</button>
+                            <button class="btn-cart-action btn-comprar" onclick="procesarCompra()">Finalizar Compra</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            container.innerHTML = html;
+        }
+
+        // Eliminar un producto individual del carrito
+        function eliminarDelCarrito(index) {
+            let item = carrito[index];
+            
+            // Devolver stock
+            let stockActual = parseInt(localStorage.getItem('stock_' + item.nombre) || 0);
+            localStorage.setItem('stock_' + item.nombre, stockActual + item.cantidad);
+
+            carrito.splice(index, 1);
+            guardarYActualizarCarrito();
+        }
+
+        // Vaciar todo el carrito
+        function vaciarCarrito() {
+            // Devolver todo el stock acumulado
+            carrito.forEach(item => {
+                let stockActual = parseInt(localStorage.getItem('stock_' + item.nombre) || 0);
+                localStorage.setItem('stock_' + item.nombre, stockActual + item.cantidad);
+            });
+
+            carrito = [];
+            guardarYActualizarCarrito();
+        }
+
+        // Finalizar pedido con generación de Folio/Número de Pedido
+        function procesarCompra() {
+            const inputComprador = document.getElementById('nombreComprador');
+            const nombreComprador = inputComprador ? inputComprador.value.trim() : '';
+
+            if (!nombreComprador) {
+                alert("Por favor, ingresa el nombre del comprador para completar el pedido.");
+                if (inputComprador) inputComprador.focus();
+                return;
+            }
+
+            // Generar número de pedido secuencial
+            let contadorPedido = parseInt(localStorage.getItem('contadorPedidosBG') || 100);
+            contadorPedido++;
+            localStorage.setItem('contadorPedidosBG', contadorPedido);
+
+            const numPedido = `BG-${new Date().getFullYear()}-${contadorPedido}`;
+
+            document.getElementById('modalTitle').innerText = '¡Compra Exitosa!';
+            document.getElementById('modalBody').innerHTML = `
+                <p style="color: #28a745; font-weight: bold; font-size: 1.2rem; margin-bottom: 5px;">¡Gracias por tu compra!</p>
+                <p style="margin-top: 5px;">Comprador: <strong>${nombreComprador}</strong></p>
+                
+                <div class="order-badge">
+                    N° DE PEDIDO: ${numPedido}
+                </div>
+
+                <p style="font-size: 0.95rem; color: #ccc;">Tu pedido ha sido procesado con éxito. Muestra este número de pedido en recepción para la entrega de tu pase o activación.</p>
+                
+                <div class="modal-actions">
+                    <button class="modal-btn" onclick="cerrarModal()">Aceptar</button>
+                </div>
+            `;
+
+            carrito = [];
+            guardarYActualizarCarrito();
+            document.getElementById('customModal').classList.add('active');
+        }
+
+        // Guardar cambios en el localStorage y refrescar la interfaz
+        function guardarYActualizarCarrito() {
+            localStorage.setItem('blackgym_carrito', JSON.stringify(carrito));
+            renderizarCarrito();
+        }
+
+        function cerrarModal() {
+            document.getElementById('customModal').classList.remove('active');
+        }
+
+        // Control del formulario Pase Gratis
         document.getElementById('paseForm').addEventListener('submit', function(event) {
-            // Evita que la página se recargue inmediatamente al enviar
             event.preventDefault();
 
-            // Obtiene el nombre ingresado
             const nombre = document.getElementById('nombre').value;
-
-            // Obtiene el número actual de registrados desde el navegador (si no hay ninguno, inicia en 0)
             let contador = localStorage.getItem('contadorPases') || 0;
             
-            // Incrementa el contador en 1
             contador++;
-
-            // Guarda el nuevo valor en la memoria del navegador
             localStorage.setItem('contadorPases', contador);
 
-            // Muestra la ventana flotante con la información requerida
-            alert('¡Felicidades, ' + nombre + '! Tu pase ha sido registrado con éxito.\nEres la persona registrada #' + contador);
-
-            // Limpia los campos del formulario
+            document.getElementById('modalTitle').innerText = '¡Pase Registrado!';
+            document.getElementById('modalBody').innerHTML = `
+                <p>¡Felicidades, <strong>${nombre}</strong>!</p>
+                <p>Tu pase de prueba ha sido registrado con éxito.</p>
+                <p style="font-size: 0.95rem; color: #ff3b30;">Eres la persona registrada <strong>#${contador}</strong></p>
+                <div class="modal-actions">
+                    <button class="modal-btn" onclick="cerrarModal()">Aceptar</button>
+                </div>
+            `;
+            
+            document.getElementById('customModal').classList.add('active');
             this.reset();
         });
     </script>
