@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLACK GYM - Contacto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="logo.png" alt="Logo BLACK GYM" class="gym-logo">
+            <h1>BLACK <span>GYM</span></h1>
+        </div>
+        <p>NO EXCUSSES. JUST RESULTS.</p>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="paquetes.html">Paquetes</a></li>
+                <li><a href="carrito.html"><i class="fa-solid fa-cart-shopping"></i> Carrito (<span id="cartCount">0</span>)</a></li>
+                <li><a href="ubicacion.html">Ubicación</a></li>
+                <li><a href="redes.html">Redes Sociales</a></li>
+                <li><a href="contacto.html" class="active">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="contacto">
+            <h2>Pase Gratis por 1 Día</h2>
+            <p>Llena tus datos para obtener tu pase de prueba en Black Gym:</p>
+            
+            <form id="paseForm">
+                <label for="nombre">Nombre Completo:</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ej. Carlos Pérez" required>
+
+                <label for="telefono">Teléfono de Contacto:</label>
+                <input type="tel" id="telefono" name="telefono" placeholder="Ej. 7831234567" required>
+
+                <label for="horario">Horario habitual de entrenamiento:</label>
+                <select id="horario" name="horario">
+                    <option value="manana">Mañana (5:00 AM - 12:00 PM)</option>
+                    <option value="tarde">Tarde (12:00 PM - 6:00 PM)</option>
+                    <option value="noche">Noche (6:00 PM - 11:00 PM)</option>
+                </select>
+
+                <button type="submit">Obtener mi Pase Gratis</button>
+            </form>
+        </section>
+    </main>
+
+    <div id="customModal" class="modal-overlay">
+        <div class="modal-box">
+            <h3 id="modalTitle">Notificación</h3>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 BLACK GYM Tuxpan. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

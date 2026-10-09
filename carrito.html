@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLACK GYM - Carrito</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="logo.png" alt="Logo BLACK GYM" class="gym-logo">
+            <h1>BLACK <span>GYM</span></h1>
+        </div>
+        <p>NO EXCUSSES. JUST RESULTS.</p>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="paquetes.html">Paquetes</a></li>
+                <li><a href="carrito.html" class="active"><i class="fa-solid fa-cart-shopping"></i> Carrito (<span id="cartCount">0</span>)</a></li>
+                <li><a href="ubicacion.html">Ubicación</a></li>
+                <li><a href="redes.html">Redes Sociales</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="carrito">
+            <h2><i class="fa-solid fa-cart-shopping"></i> Carrito de Compras</h2>
+            <div id="cartContent"></div>
+        </section>
+    </main>
+
+    <div id="customModal" class="modal-overlay">
+        <div class="modal-box">
+            <h3 id="modalTitle">Notificación</h3>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 BLACK GYM Tuxpan. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
